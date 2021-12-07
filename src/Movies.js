@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import WeekendIcon from '@mui/icons-material/Weekend';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { Book } from "@mui/icons-material";
 
 export function Movies() {
     const{id}=useParams();
@@ -65,6 +66,19 @@ function MovieLayout({name,poster,trailer,seats}) {
   const [styl,setstyl]=useState(false);
   const style={display:styl?"grid":"none"}
 
+  const[color,setcolor]=useState("primary");
+  const clr={color:color}
+  function book(s,index) {
+    if(s){
+      console.log("seat is already booked")
+    }
+    else{
+        console.log("Booked seat of seatNo:",index)
+    }
+    
+  }
+
+  // const clr={color:color}
     return(
         <div className="movie">
              <Card sx={{ maxWidth: 345 }}>
@@ -88,25 +102,16 @@ function MovieLayout({name,poster,trailer,seats}) {
     </Card>
     <div  style={style} className="seats"> 
          {seats.map((s,index)=>(
-          <Seats vl={s} key={index}/>
-          ))}
+           <div style={clr} className={`_${s}`}>
+             <IconButton 
+             onClick={()=>{book(s,index)}}
+             aria-label="seat"  color={color}>
+              <WeekendIcon />
+            </IconButton>
+           </div>
+         ))}
     </div>
         </div>
     );
 }
 
-function Seats({vl}) {
-  const[color,setcolor]=useState("");
-   setcolor(vl?"success":"primary");
-  return(
-    <div>
-      <div className="seat-button">
-             <IconButton 
-             onClick={()=>setcolor("success")}
-             aria-label="seat"  color={color}>
-              <WeekendIcon />
-            </IconButton>
-           </div>
-    </div>
-  )
-}
