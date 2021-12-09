@@ -36,6 +36,7 @@
 .seats{
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+  max-width: min-content;
 }
 
 form{
@@ -57,6 +58,10 @@ form{
    height:25rem;
 }
 ._1{
-   border: 3px green ;
-   border-style:groove;
+   pointer-events: none;
+   background-color: rgb(223, 223, 223);
 }
+
+
+
+
